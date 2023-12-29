@@ -72,28 +72,6 @@ Tempo_LOG = 5       # Em minutos
 Hora_INI = 07
 Hora_FIM = 19
 
-
-#Uma vez a cada 20 minutos faz a leitura dos dados meteorológicos para atualizar a lógica do programa
-#a=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#a.settimeout(.5)
-#try:
-#    # usa um site confiável para verificar a conexão com a internet
-#    b = a.connect_ex(("www.google.com", 80))
-#    if b==0:  # ok, conectado
-#        # Define a URL que vai conter a API do Open Weather de onde virão os dados
-#        url='http://api.openweathermap.org/data/2.5/weather?appid=6287107a8fa6625efa01e33a130fb836&q=joinville'
-#        # Cria um objeto que vai receber os dados JSON
-#        json_data = requests.get(url).json()
-#        # Com os dados recebidos usa a Sessão "main"
-#        format_add = json_data['main']
-#        # Com os dados recebidos usa a sessão "weather"
-#        clima_add = json_data['weather']
-#        # Atribui as variáveis que realmente vão ser usadas
-#        Tempo_ID = int(clima_add[0]['id'])
-#except:
-#   pass
-#a.close()
-
 # Informacoes iniciais
 print ("*** Lendo SENSORES\n")
  
@@ -283,20 +261,3 @@ if (min % Tempo_LOG == 0):
         writer.writerow(myList)
     finally:
         fl.close()
-
-
-
-#if (min % 10 == 0):
-#    # Depois disso faz a gravacao no Banco de Dados MySQL do servidor
-#    db = MySQLdb.connect(host="10.1.1.254", user="siscontrol", passwd="@drf1624", db="controle")
-#    # Cria um cursor que fara a ponte com o Banco de Dados
-#    cur = db.cursor()
-#    # Monta a SQL de inclusao
-#    sql = "INSERT INTO estufa_dados VALUES (NULL," + varTemp  + "," + varUmid + "," + varLume + "," + varPres + ",CURRENT_TIMESTAMP())"
-#    try:
-#        cur.execute(sql)
-#        db.commit()
-#    except:
-#        db.rollback()
-#    #fecha a conexao
-#    db.close()
